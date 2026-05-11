@@ -19,6 +19,13 @@ public class IdempotencyKey {
     @Column(nullable = false)
     private Instant createdAt;
 
+    @Column(nullable = false)
+    private String status; // STARTED, COMPLETED, FAILED
+
     @Column(columnDefinition = "TEXT")
     private String responsePayload;
+
+    public static final String STATUS_STARTED = "STARTED";
+    public static final String STATUS_COMPLETED = "COMPLETED";
+    public static final String STATUS_FAILED = "FAILED";
 }
