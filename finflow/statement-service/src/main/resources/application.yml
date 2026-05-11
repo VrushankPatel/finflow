@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: statement-service
+  datasource:
+    url: jdbc:h2:mem:statement-db
+    driverClassName: org.h2.Driver
+    username: sa
+    password: password
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+server:
+  port: 8082
+
+spring.kafka:
+  bootstrap-servers: localhost:19092,localhost:19093,localhost:19094
+  consumer:
+    group-id: statement-group
+    auto-offset-reset: earliest
+    key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+    properties:
+      spring.json.trusted.packages: "org.finflow.commons.event"

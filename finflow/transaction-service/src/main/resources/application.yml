@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: transaction-service
+  datasource:
+    url: jdbc:h2:mem:transaction-db
+    driverClassName: org.h2.Driver
+    username: sa
+    password: password
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+server:
+  port: 8081
+
+spring.kafka:
+  bootstrap-servers: localhost:19092,localhost:19093,localhost:19094
+  producer:
+    key-serializer: org.apache.kafka.common.serialization.StringSerializer
+    value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
